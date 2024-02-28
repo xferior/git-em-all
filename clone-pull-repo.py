@@ -52,7 +52,7 @@ def clone_or_pull_repos(repos, selection, clone_directory):
             except subprocess.CalledProcessError:
                 print(f"Cloning {repo_name} failed. Please check if the repository exists and you have access to it.")
 
-# Select specific repositories to clone or update.
+# Select specific repositories to clone or update
 def interactive_mode(repos):
     print("Available repositories to clone or update:")
     for i, repo in enumerate(repos, start=1):
