@@ -34,7 +34,7 @@ def clone_or_pull_repos(repos, selection, clone_directory):
         # Check if repo already exists
         if os.path.exists(repo_path) and os.path.isdir(repo_path):
             print(f"Repository {repo_name} already exists. Checking for updates...")
-            # Attempt to pull updates from the remote
+            # Attempt to pull updates from the remote repo
             try:
                 result = subprocess.run(["git", "pull"], cwd=repo_path, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
                 if "Already up to date." in result.stdout:
@@ -79,21 +79,26 @@ def interactive_mode(repos):
     clone_or_pull_repos(repos, ",".join(repo_names), clone_directory)
 
 if __name__ == "__main__":
+    # Check for help argument
+    if len(sys.argv) == 2 and sys.argv[1] in ("-h", "--help"):
+        print("Usage: python3 script.py <username> [--all | repo1,repo2,repo3] <path_to_directory>")
+        sys.exit(0)
+
     # Validate and process command-line arguments
     if len(sys.argv) >= 2 and sys.argv[1].strip():
         username = sys.argv[1]
     else:
         print("Error: No username provided. Exiting.")
         sys.exit(1)
-    
+
+    # Decide mode based on the number of command-line arguments
     repos = list_github_repos(username)
+    # Enter interactive mode if only the username is provided
     if not repos:
         print("No repositories found or error fetching repositories.")
         sys.exit(1)
     
-    # Decide mode based on the number of command-line arguments
     if len(sys.argv) == 2:
-        # Enter interactive mode if only the username is provided
         interactive_mode(repos)
     elif len(sys.argv) == 4:
         # Clone or update specified repositories or all
