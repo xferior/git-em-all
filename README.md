@@ -17,7 +17,7 @@ This script enumerates all public repos for a GitHub user. It can clone all repo
 ### Clone All Repositories
 To clone all repositories of a user into a specific directory:
 ```
-python script.py <username> --all <path_to_clone_directory>
+python3 clone-pull-repo.py <username> --all <path_to_clone_directory>
 ```
 ### Selectively Clone or Update Repositories
 To list all repositories and then choose specific ones to clone or update:
