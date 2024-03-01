@@ -15,7 +15,8 @@ This script enumerates all public repos for a GitHub user. It can clone all repo
 ## Usage
 
 ```
-$ python3 script.py <username> [--all | repo1,repo2,repo3] <path_to_directory>
+$ python3 clone-pull-repo.py -h
+Usage: python3 clone-pull-repo.py <username> [--all | repo1,repo2,repo3] <path_to_directory>
 ```
 
 ### Clone All Repositories
